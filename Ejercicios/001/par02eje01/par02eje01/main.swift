@@ -38,8 +38,10 @@ class Superheroe
 
 print("Ingresar el nombre del superheroe:")
 let name:String = readLine()!
-let description:String = ""
-let layer:Bool = false
+print("Ingresar la decricpion del superheroe:")
+let description:String = readLine()!
+print("El superheroe usa capa:")
+let layer:Bool = Bool(readLine()!)!
 
 let sheroe = (Superheroe(name: name, description: description, layer: layer))
 
