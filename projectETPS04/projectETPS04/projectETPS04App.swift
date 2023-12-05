@@ -8,9 +8,9 @@
 import SwiftUI
 import Firebase
 
-
 @main
 struct projectETPS04App: App {
+    @AppStorage("signIn") var isSignIn = false
     
     init(){
         FirebaseApp.configure()
@@ -20,6 +20,7 @@ struct projectETPS04App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+
         }
     }
 }
