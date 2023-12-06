@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct LocationFarmacia: View {
+struct locationFarmacia: View {
     var longitud: Double
     var latitud: Double
 

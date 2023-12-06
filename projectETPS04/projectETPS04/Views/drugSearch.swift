@@ -18,6 +18,7 @@ struct drugSearch: View {
     @State private var departamentoSeleccionado: String = ""
     @State private var municipioSeleccionado: String = ""
     @State private var farmaciasEncontradas: [String] = []
+    @State private var otroNombre: [Farmacia] = []
     @State private var mostrarResultados = false
     
     let db = Firestore.firestore()
@@ -124,7 +125,7 @@ struct drugSearch: View {
                     })
                     
                     // Este NavigationLink se activa cuando mostrarResultados es true
-                                        NavigationLink(destination: resultadoBusquedaView(farmacias: farmaciasEncontradas), isActive: $mostrarResultados) {
+                                        NavigationLink(destination: resultadoBusquedaView(farmacias: otroNombre), isActive: $mostrarResultados) {
                                             EmptyView()
                                         }
                 }
@@ -167,6 +168,7 @@ struct drugSearch: View {
                 
                 // Filtrar las farmacias por el municipio seleccionado
                 filtrarFarmaciasPorMunicipio(farmacias: farmaciasDelMedicamento)
+                obtenerDatosDeFarmacias(farmacias: farmaciasDelMedicamento)
             } else if let err = err {
                 print("Error buscando el medicamento: \(err)")
             } else {
@@ -174,7 +176,27 @@ struct drugSearch: View {
             }
         }
     }
-    
+
+    func obtenerDatosDeFarmacias(farmacias: [String]) {
+        for farmacia in farmacias {
+            let docRef = db.collection("Farmacias").document(farmacia)
+            
+            docRef.getDocument { (document, err) in
+                if let document = document, document.exists {
+                    let latitud = document.data()?["Latitud"] as? Double ?? 0
+                    let longitud = document.data()?["Longitud"] as? Double ?? 0
+                    
+                    // Aquí puedes crear una nueva instancia de Farmacia y agregarla a tu array de farmacias
+                    let nuevaFarmacia = Farmacia(id: farmacia, longitud: longitud, latitud: latitud)
+                    self.otroNombre.append(nuevaFarmacia)
+                } else if let err = err {
+                    print("Error obteniendo datos de la farmacia: \(err)")
+                } else {
+                    print("Farmacia no encontrada")
+                }
+            }
+        }
+    }
     
     func filtrarFarmaciasPorMunicipio(farmacias: [String]) {
         // Crear un grupo de dispatch para manejar las consultas asincrónicas
