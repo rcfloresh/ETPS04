@@ -9,22 +9,27 @@ import SwiftUI
 
 struct resultadoBusquedaView: View {
     var farmacias: [String]
-    
+
     var body: some View {
+
         NavigationView{
             ZStack{
                 bgColorStyle()
                 VStack{
-                    List(farmacias, id: \.self) { farmacia in
-                        Text(farmacia)
-                    }
+                    NavigationLink(destination: LocationFarmacia(longitud: -89.2181911, latitud: 13.6929403)) {
+                        List(farmacias, id: \.self) { farmacia in
+                                                Text(farmacia)
+                                            }
+                      }
                     .navigationBarTitle("Resultado de Farmacias")
                 }
             }
         }
     }
 }
-//
+
+
+
 //#Preview {
-//    resultadoBusquedaView()
+//    resultadoBusquedaView(farmacias:["1"] )
 //}

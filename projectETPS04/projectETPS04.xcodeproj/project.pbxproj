@@ -19,12 +19,14 @@
 		944AE8222AE63994002ECF1C /* projectETPS04Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AE8212AE63994002ECF1C /* projectETPS04Tests.swift */; };
 		944AE82C2AE63995002ECF1C /* projectETPS04UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AE82B2AE63995002ECF1C /* projectETPS04UITests.swift */; };
 		944AE82E2AE63995002ECF1C /* projectETPS04UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AE82D2AE63995002ECF1C /* projectETPS04UITestsLaunchTests.swift */; };
+		946D13E02B1FE66D0017B9CE /* locationFarmacia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946D13DF2B1FE66D0017B9CE /* locationFarmacia.swift */; };
 		94A2E15B2B199D10007E9D5E /* drugSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A2E15A2B199D0F007E9D5E /* drugSearch.swift */; };
 		94AE09D22B1EDFBD00C08822 /* resultadoBusquedaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AE09D12B1EDFBD00C08822 /* resultadoBusquedaView.swift */; };
 		94AE09D42B1EE47E00C08822 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94AE09D32B1EE47E00C08822 /* GoogleService-Info.plist */; };
 		94E5FD9A2B182D6A00A4F86A /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 94E5FD992B182D6A00A4F86A /* GoogleSignIn */; };
 		94E5FD9C2B182D6A00A4F86A /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 94E5FD9B2B182D6A00A4F86A /* GoogleSignInSwift */; };
 		94E5FDA22B18309200A4F86A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E5FDA12B18309200A4F86A /* Login.swift */; };
+		94E62A662B2019F800EDB432 /* Farmacia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E62A652B2019F800EDB432 /* Farmacia.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,11 +60,13 @@
 		944AE8272AE63994002ECF1C /* projectETPS04UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = projectETPS04UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		944AE82B2AE63995002ECF1C /* projectETPS04UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectETPS04UITests.swift; sourceTree = "<group>"; };
 		944AE82D2AE63995002ECF1C /* projectETPS04UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectETPS04UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		946D13DF2B1FE66D0017B9CE /* locationFarmacia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationFarmacia.swift; sourceTree = "<group>"; };
 		94A2E15A2B199D0F007E9D5E /* drugSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drugSearch.swift; sourceTree = "<group>"; };
 		94AE09D12B1EDFBD00C08822 /* resultadoBusquedaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultadoBusquedaView.swift; sourceTree = "<group>"; };
 		94AE09D32B1EE47E00C08822 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		94E5FD9F2B182F6800A4F86A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		94E5FDA12B18309200A4F86A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		94E62A652B2019F800EDB432 /* Farmacia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Farmacia.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,7 @@
 		94A2E15E2B19B77A007E9D5E /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				94E62A652B2019F800EDB432 /* Farmacia.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 				941C336B2AF4C72600139D0B /* forgotPasswordView.swift */,
 				94A2E15A2B199D0F007E9D5E /* drugSearch.swift */,
 				94AE09D12B1EDFBD00C08822 /* resultadoBusquedaView.swift */,
+				946D13DF2B1FE66D0017B9CE /* locationFarmacia.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -334,7 +340,9 @@
 				944AE8132AE63992002ECF1C /* ContentView.swift in Sources */,
 				941C336C2AF4C72600139D0B /* forgotPasswordView.swift in Sources */,
 				941C33682AF4B72500139D0B /* registerView.swift in Sources */,
+				94E62A662B2019F800EDB432 /* Farmacia.swift in Sources */,
 				94E5FDA22B18309200A4F86A /* Login.swift in Sources */,
+				946D13E02B1FE66D0017B9CE /* locationFarmacia.swift in Sources */,
 				944AE8112AE63992002ECF1C /* projectETPS04App.swift in Sources */,
 				94A2E15B2B199D10007E9D5E /* drugSearch.swift in Sources */,
 				94AE09D22B1EDFBD00C08822 /* resultadoBusquedaView.swift in Sources */,

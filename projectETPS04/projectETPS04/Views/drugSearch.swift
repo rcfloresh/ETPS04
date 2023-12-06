@@ -11,7 +11,8 @@ import FirebaseFirestore
 
 struct drugSearch: View {
     
-    @State private var medicamento:String=""
+    @State private var medicamento = ""
+    @State private var medicamentos: [String] = []
     @State private var departamentos: [String] = []
     @State private var municipios: [String] = []
     @State private var departamentoSeleccionado: String = ""
@@ -35,36 +36,61 @@ struct drugSearch: View {
                                 radius: 10,x:0, y: 20)
                         .frame(width:300, alignment: .trailing)
                     
-                    TextField("Medicamento:", text: $medicamento)
-                        .keyboardType(.emailAddress)
-                        .frame(width: 300, height: 30)
-                        .disableAutocorrection(true)
-                        .padding(8)
-                        .font(.headline)
-                        .background(Color.white.opacity(0.7))
-                        .cornerRadius(25)
-                        .padding(.horizontal, 60)
-                         .padding(.top, 20)
                     
-                    Picker("Departamento", selection:
-                        $departamentoSeleccionado) {
-                            ForEach(departamentos, id: \.self) { departamento in
-                                Text(departamento).tag(departamento)
+                    TextField("Medicamento:", text: $medicamento)
+                                    .onChange(of: medicamento) { newValue in
+                                        buscarMedicamentoInteractivo(query: newValue)
+                                    }
+                                    .frame(width: 300, height: 30)
+                                    .disableAutocorrection(true)
+                                    .padding(8)
+                                    .font(.headline)
+                                    .foregroundColor(.black)
+                                    .background(Color.white.opacity(0.7))
+                                    .cornerRadius(25)
+                                    .padding(.horizontal, 60)
+                                    .padding(.top, 20)
+
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(medicamentos, id: \.self) { medicamento in
+                                Button(action: {
+                                    self.medicamento = medicamento
+                                }) {
+                                    HStack {
+                                        Text(medicamento)
+                                            .font(.headline)
+                                            .foregroundColor(.primary)
+                                        Spacer()
+                                    }
+                                    .padding()
+                                    .background(Color.gray.opacity(0.1))
+                                    .cornerRadius(10)
+                                    .padding(.horizontal)
+                                }
                             }
                         }
-                        .frame(width: 300, height: 30)
-                        .padding(8)
-                        .font(.headline)
-                        .foregroundColor(.black)
-                        .background(Color.white.opacity(0.7))
-                        .cornerRadius(25)
-                        .padding(.horizontal, 60)
-                        .padding(.top, 20)
-                        .onAppear {obtenerDepartamentos()}
-                        .onChange(of: departamentoSeleccionado)
-                            { nuevoValor in obtenerMunicipios(
-                                departamento: nuevoValor)
-                                                    }
+                    }
+                    
+                    Picker("Departamento", selection:
+                                            $departamentoSeleccionado) {
+                                                ForEach(departamentos, id: \.self) { departamento in
+                                                    Text(departamento).tag(departamento)
+                                                }
+                                            }
+                                            .frame(width: 300, height: 30)
+                                            .padding(8)
+                                            .font(.headline)
+                                            .foregroundColor(.black)
+                                            .background(Color.white.opacity(0.7))
+                                            .cornerRadius(25)
+                                            .padding(.horizontal, 60)
+                                            .padding(.top, 20)
+                                            .onAppear {obtenerDepartamentos()}
+                                            .onChange(of: departamentoSeleccionado)
+                                                { nuevoValor in obtenerMunicipios(
+                                                    departamento: nuevoValor)
+                                                                        }
 
                     Picker("Municipio", selection: $municipioSeleccionado) {
                         ForEach(municipios, id: \.self) { municipio in
@@ -98,9 +124,9 @@ struct drugSearch: View {
                     })
                     
                     // Este NavigationLink se activa cuando mostrarResultados es true
-                    NavigationLink(destination: resultadoBusquedaView(farmacias: farmaciasEncontradas), isActive: $mostrarResultados) {
-                        EmptyView()
-                    }
+                                        NavigationLink(destination: resultadoBusquedaView(farmacias: farmaciasEncontradas), isActive: $mostrarResultados) {
+                                            EmptyView()
+                                        }
                 }
             }
         }
@@ -149,6 +175,7 @@ struct drugSearch: View {
         }
     }
     
+    
     func filtrarFarmaciasPorMunicipio(farmacias: [String]) {
         // Crear un grupo de dispatch para manejar las consultas asincrónicas
         let dispatchGroup = DispatchGroup()
@@ -178,6 +205,18 @@ struct drugSearch: View {
     }
     
 
+    func buscarMedicamentoInteractivo(query: String) {
+            let db = Firestore.firestore()
+            db.collection("Medicamentos").whereField(FieldPath.documentID(), isGreaterThanOrEqualTo: query).whereField(FieldPath.documentID(), isLessThanOrEqualTo: query + "\u{f8ff}").addSnapshotListener { (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents")
+                    return
+                }
+
+                medicamentos = documents.map { $0.documentID }
+            }
+        }
+    
 }
     
 
