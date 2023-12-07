@@ -16,8 +16,9 @@ struct Login: View {
     
  @State private var email:String=""
  @State private var password:String=""
-    
  @State private var userIsLoggedIn: Bool=false
+    
+@StateObject private var vm = SignIn_withGoogle_VM()
     
     var body: some View {
         if userIsLoggedIn{
@@ -98,6 +99,16 @@ struct Login: View {
                             .foregroundColor(.white)
                             .font(.system(size: 15, weight: .bold))
                     }
+                    
+                    
+                    //Start Google
+                    Button{
+                        vm.signInWithGoogle()
+                    } label: {
+                        Image(.google)
+                            .padding(35)
+                    }
+                    //End Google
                     
                     
                 }

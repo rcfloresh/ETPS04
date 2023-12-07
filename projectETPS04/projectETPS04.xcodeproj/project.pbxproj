@@ -19,6 +19,8 @@
 		944AE8222AE63994002ECF1C /* projectETPS04Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AE8212AE63994002ECF1C /* projectETPS04Tests.swift */; };
 		944AE82C2AE63995002ECF1C /* projectETPS04UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AE82B2AE63995002ECF1C /* projectETPS04UITests.swift */; };
 		944AE82E2AE63995002ECF1C /* projectETPS04UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AE82D2AE63995002ECF1C /* projectETPS04UITestsLaunchTests.swift */; };
+		94611A462B214696000900FB /* SignIn_withGoogle_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94611A452B214696000900FB /* SignIn_withGoogle_VM.swift */; };
+		94611A482B214815000900FB /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94611A472B214815000900FB /* Application.swift */; };
 		946D13E02B1FE66D0017B9CE /* locationFarmacia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946D13DF2B1FE66D0017B9CE /* locationFarmacia.swift */; };
 		94A2E15B2B199D10007E9D5E /* drugSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A2E15A2B199D0F007E9D5E /* drugSearch.swift */; };
 		94AE09D22B1EDFBD00C08822 /* resultadoBusquedaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AE09D12B1EDFBD00C08822 /* resultadoBusquedaView.swift */; };
@@ -60,6 +62,8 @@
 		944AE8272AE63994002ECF1C /* projectETPS04UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = projectETPS04UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		944AE82B2AE63995002ECF1C /* projectETPS04UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectETPS04UITests.swift; sourceTree = "<group>"; };
 		944AE82D2AE63995002ECF1C /* projectETPS04UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectETPS04UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		94611A452B214696000900FB /* SignIn_withGoogle_VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn_withGoogle_VM.swift; sourceTree = "<group>"; };
+		94611A472B214815000900FB /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		946D13DF2B1FE66D0017B9CE /* locationFarmacia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationFarmacia.swift; sourceTree = "<group>"; };
 		94A2E15A2B199D0F007E9D5E /* drugSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drugSearch.swift; sourceTree = "<group>"; };
 		94AE09D12B1EDFBD00C08822 /* resultadoBusquedaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultadoBusquedaView.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				94176C092AF46E360055FC6C /* bgColorStyle.swift */,
+				94611A472B214815000900FB /* Application.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 		94E5FDA32B18422900A4F86A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				94611A452B214696000900FB /* SignIn_withGoogle_VM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94611A482B214815000900FB /* Application.swift in Sources */,
 				944AE8132AE63992002ECF1C /* ContentView.swift in Sources */,
 				941C336C2AF4C72600139D0B /* forgotPasswordView.swift in Sources */,
 				941C33682AF4B72500139D0B /* registerView.swift in Sources */,
@@ -347,6 +354,7 @@
 				94A2E15B2B199D10007E9D5E /* drugSearch.swift in Sources */,
 				94AE09D22B1EDFBD00C08822 /* resultadoBusquedaView.swift in Sources */,
 				94176C0A2AF46E360055FC6C /* bgColorStyle.swift in Sources */,
+				94611A462B214696000900FB /* SignIn_withGoogle_VM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

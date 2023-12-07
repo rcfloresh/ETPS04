@@ -9,11 +9,17 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
+    @AppStorage("log_status") var logStatus: Bool = false
 
     
     var body: some View {
-     //   Login()
-        drugSearch()
+        if(logStatus){
+            drugSearch()
+        }
+        else{
+            Login()
+        }
+        
     }
 }
 

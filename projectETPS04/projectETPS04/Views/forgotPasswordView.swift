@@ -10,6 +10,9 @@ import Firebase
 
 struct forgotPasswordView: View {
     
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @Environment(\.presentationMode) var presentationMode
     @State var email:String=""
     
     var body: some View {
@@ -49,7 +52,7 @@ struct forgotPasswordView: View {
                         .padding(.top, 7)
                     
                     Button(action:{
-                        Auth.auth().sendPasswordReset(withEmail: email)
+                        sendPasswordReset()
                     },
                            label : {
                         Text("Recuperar contraseña".uppercased())
@@ -62,11 +65,32 @@ struct forgotPasswordView: View {
                             .padding(.horizontal, 60)
                             .padding(.top, 7)
                             .font(.system(size:15, weight: .bold))
-                    }) // Button
+                    })
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("Recuperación de contraseña"), message: Text(alertMessage), dismissButton: .default(Text("OK")) {
+                            self.presentationMode.wrappedValue.dismiss()
+                        })
+                    }// Button
+
+                    
+                    
                 } //VStack
             } // ZStack
         } // NavigationView
     } // var body: some View
+    
+    func sendPasswordReset() {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                alertMessage = "Error: \(error.localizedDescription)"
+            } else {
+                // Correo de recuperación de contraseña enviado exitosamente
+                alertMessage = "Correo de recuperación de contraseña enviado."
+            }
+            showAlert = true
+        }
+    }
+    
 } // struct forgotPasswordView: View
 
 #Preview {

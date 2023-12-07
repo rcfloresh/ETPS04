@@ -9,11 +9,14 @@ import SwiftUI
 import Firebase
 
 struct registerView: View {
+    
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @Environment(\.presentationMode) var presentationMode
+    
     @State private var name:String=""
     @State private var email:String=""
     @State private var password:String=""
-    
-    //@State private var registrationSuccess = false
     
     
     var body: some View {
@@ -84,7 +87,14 @@ struct registerView: View {
                         .padding(.horizontal, 60)
                         .padding(.top, 7)
                         .font(.system(size:15, weight: .bold))
-                }) // Button
+                }).alert(isPresented: $showAlert) {
+                    Alert(title: Text("Registro de usuario"), message: Text(alertMessage), dismissButton: .default(Text("OK")) {
+                        self.presentationMode.wrappedValue.dismiss()
+                    })
+                }
+                
+                
+                // Button
             } // ZStack
         } // NavigationView
     } // var body: some View
@@ -94,12 +104,13 @@ struct registerView: View {
         Auth.auth().createUser(withEmail: email, password: password)
         {
             result, error in
-            if error != nil{
-                print(error?.localizedDescription as Any)
+            if let error = error {
+                alertMessage = "Error: \(error.localizedDescription)"
+            } else {
+                // Usuario creado exitosamente
+                alertMessage = "Usuario creado exitosamente."
             }
-//            else{
-//                registrationSuccess = true
-//            }
+            showAlert = true
         }
     }
 

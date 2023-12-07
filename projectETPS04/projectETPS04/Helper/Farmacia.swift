@@ -12,7 +12,3 @@ struct Farmacia: Identifiable {
     var longitud: Double
     var latitud: Double
 }
-
-//#Preview {
-//    Farmacia()
-//}

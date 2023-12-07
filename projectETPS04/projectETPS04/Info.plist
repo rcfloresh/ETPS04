@@ -9,9 +9,11 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.902511711621-6t1157lbmeib9dk2u1qs3j5qbko4q4od</string>
+				<string>com.googleusercontent.apps.35660645887-ht8de63e67ql00hmlsfkshpf7o5o7367</string>
 			</array>
 		</dict>
 	</array>
+	<key>GIDClientID</key>
+	<string>35660645887-ht8de63e67ql00hmlsfkshpf7o5o7367.apps.googleusercontent.com</string>
 </dict>
 </plist>
