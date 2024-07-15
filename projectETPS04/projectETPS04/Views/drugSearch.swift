@@ -23,11 +23,20 @@ struct drugSearch: View {
     
     let db = Firestore.firestore()
     
+    @StateObject private var vm = SignIn_withGoogle_VM()
+    @State private var userIsLoggedIn: Bool=true
+    
     var body: some View {
+        
+        
         NavigationView{
+        
             ZStack{
                 bgColorStyle()
                 VStack{
+                    
+                    
+                    
                     Image(.logo)
                         .resizable()
                         .frame(width: 75, height: 75)
@@ -124,11 +133,22 @@ struct drugSearch: View {
                             .font(.system(size:15, weight: .bold))
                     })
                     
-                    // Este NavigationLink se activa cuando mostrarResultados es true
                                         NavigationLink(destination: resultadoBusquedaView(farmacias: otroNombre), isActive: $mostrarResultados) {
                                             EmptyView()
                                         }
-                }
+                }.navigationBarItems(trailing:
+                                        Menu {
+                                            Button(action: {
+                                                vm.signOut()
+                                            }) {
+                                                Text("Cerrar sesión")
+                                                Image(systemName: "arrowshape.turn.up.left")
+                                            }
+                                        } label: {
+                                            Image(systemName: "line.horizontal.3")
+                                                .imageScale(.large)
+                                        }
+                )
             }
         }
       
@@ -226,7 +246,6 @@ struct drugSearch: View {
         }
     }
     
-
     func buscarMedicamentoInteractivo(query: String) {
             let db = Firestore.firestore()
             db.collection("Medicamentos").whereField(FieldPath.documentID(), isGreaterThanOrEqualTo: query).whereField(FieldPath.documentID(), isLessThanOrEqualTo: query + "\u{f8ff}").addSnapshotListener { (querySnapshot, error) in

@@ -11,6 +11,23 @@ import GoogleSignIn
 
 class SignIn_withGoogle_VM: ObservableObject{
     @Published var isLoginSuccessed = false
+    @Published var userIsLoggedIn = false
+    
+    var onSuccessfulLogin: (() -> Void)?
+    var onSuccessfulLogout: (() -> Void)?
+    
+
+    
+    
+    func signOut() {
+            do {
+                try Auth.auth().signOut()
+                self.onSuccessfulLogout?()
+                print("Signing out")
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+        }
     
     func signInWithGoogle(){
         guard let clientID = FirebaseApp.app()?.options.clientID else {return}
@@ -34,14 +51,18 @@ class SignIn_withGoogle_VM: ObservableObject{
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString, accessToken: accessToken.tokenString)
                 
                 Auth.auth().signIn(with: credential) {res, error in
-                    if let error = error{
-                        print(error.localizedDescription)
-                        return
-                    }
-                    guard let user = res?.user else {return}
-                    print(user)
-                }
+                            if let error = error{
+                                print(error.localizedDescription)
+                                return
+                            }
+                            guard let user = res?.user else {return}
+                            print(user)
+                            
+                            self.onSuccessfulLogin?()
+                        }
                 
             }
     }
+    
+    
 }

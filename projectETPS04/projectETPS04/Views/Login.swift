@@ -18,10 +18,13 @@ struct Login: View {
  @State private var password:String=""
  @State private var userIsLoggedIn: Bool=false
     
-@StateObject private var vm = SignIn_withGoogle_VM()
-    
+ @StateObject private var vm = SignIn_withGoogle_VM()
+
     var body: some View {
         if userIsLoggedIn{
+            drugSearch()
+        }
+        else if vm.userIsLoggedIn {
             drugSearch()
         }
         else {
@@ -99,16 +102,20 @@ struct Login: View {
                             .foregroundColor(.white)
                             .font(.system(size: 15, weight: .bold))
                     }
-                    
-                    
-                    //Start Google
+
                     Button{
-                        vm.signInWithGoogle()
-                    } label: {
-                        Image(.google)
-                            .padding(35)
-                    }
-                    //End Google
+                                    vm.signInWithGoogle()
+                                } label: {
+                                    Image(.google)
+                                        .padding(35)
+                                }
+                                //End Google
+                            }
+                            .padding()
+                            .onAppear {
+                                // Asignar el closure aquí
+                                vm.onSuccessfulLogin = { userIsLoggedIn = true }
+                    
                     
                     
                 }
